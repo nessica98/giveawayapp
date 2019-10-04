@@ -12,9 +12,10 @@ import Hello from "./Hello";
 import Slide from "./Slide"
 
 
-class App extends Component{
+class Home extends Component{
   
  state = {
+    nameroom: ' ',
     sideDrawerOpen: false
   };
   
@@ -57,4 +58,4 @@ class App extends Component{
 }
 
 
-export default App;
+export default Home;
