@@ -11,7 +11,7 @@ const items = [
   {
     id: 1,
     altText: 'Slide 1',
-    caption: 'Slide 1'
+    caption: 'Slide 1',
   },
   {
     id: 2,

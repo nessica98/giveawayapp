@@ -10,12 +10,12 @@ import { Button } from 'reactstrap';
 import './App.css'
 import Hello from "./Hello";
 import Slide from "./Slide"
-
+import Picshow from "./picshow";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Home extends Component{
-  
  state = {
-    nameroom: ' ',
+   roomname: this.props.match.params.name,
     sideDrawerOpen: false
   };
   
@@ -30,6 +30,9 @@ class Home extends Component{
 };
 
   render(){
+    console.log(this.props.match.params.name);
+    const {params} = this.props.match;
+    console.log(params);         
     let sideDrawer;
     let backdrop;
 
@@ -38,6 +41,7 @@ class Home extends Component{
     }
   
   return (
+    
     <div style={{height: '100%'}}>
       <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
       <SideDrawer show={this.state.sideDrawerOpen} />
@@ -46,13 +50,15 @@ class Home extends Component{
         
         <nav className = 'hellofrom'>
         <ul>
-        <Slide />
+        <Slide nameroom = {this.state.roomname}/>
         <li><d>NEW</d></li>
+        <li><Picshow nameroom = {this.state.roomname}/></li>
         </ul>
         </nav>
       </main>
       
     </div>
+  
   );
   }
 }
