@@ -11,11 +11,15 @@ import './App.css'
 import Hello from "./Hello";
 import Slide from "./Slide"
 import Picshow from "./picshow";
+import ListItem from "./ListItem"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Home extends Component{
+  constructor(props){
+    super(props);
+  }
  state = {
-   roomname: this.props.match.params.name,
+    roomname: this.props.match.params.name,
     sideDrawerOpen: false
   };
   
@@ -30,6 +34,7 @@ class Home extends Component{
 };
 
   render(){
+    var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'}]}];
     console.log(this.props.match.params.name);
     const {params} = this.props.match;
     console.log(params);         
@@ -39,6 +44,7 @@ class Home extends Component{
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
+    const img1 = './img/nubanner.jpg'
   
   return (
     
@@ -47,12 +53,15 @@ class Home extends Component{
       <SideDrawer show={this.state.sideDrawerOpen} />
       {backdrop}
       <main >
-        
+        <div style ={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+        <Picshow nameroom = {this.state.roomname} />
+        </div>
         <nav className = 'hellofrom'>
         <ul>
-        <Slide nameroom = {this.state.roomname}/>
-        <li><d>NEW</d></li>
-        <li><Picshow nameroom = {this.state.roomname}/></li>
+        <li><div className ="listView"><ListItem roomname = {this.state.roomname} dataset = {data}/></div></li>
+        </ul>
+        <ul>
+          
         </ul>
         </nav>
       </main>

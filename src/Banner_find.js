@@ -10,6 +10,10 @@ export const banner_find = [
         room_img: minhyun
     },
     {
+        roomname: 'x1official',
+        room_img: require('./img/x1banner.jpg')
+    },
+    {
         roomname: 'not found'
     }
 ];

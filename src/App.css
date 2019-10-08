@@ -1,5 +1,5 @@
 .hellofrom {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -9,4 +9,11 @@
 }
 .hellofrom ul {
     list-style: none;
+}
+
+.listView {
+    margin: auto;
+    width: 75%;
+    border: 3px solid green;
+
 }
