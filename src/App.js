@@ -11,9 +11,10 @@ import './App.css'
 import Hello from "./Hello";
 import Slide from "./Slide"
 import Picshow from "./picshow";
-import ListItem from "./ListItem"
+import ListItem from "./ListItem";
+import ModalBox from "./component/Modal/Modal";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+//import ModalB from './component/Modal/Modal2'
 class Home extends Component{
   constructor(props){
     super(props);
@@ -34,7 +35,9 @@ class Home extends Component{
 };
 
   render(){
-    var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'}]}];
+    //var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'},{Name:'Kang Minhee polaroid 20ea'}]}];
+   
+    
     console.log(this.props.match.params.name);
     const {params} = this.props.match;
     console.log(params);         
@@ -52,16 +55,17 @@ class Home extends Component{
       <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
       <SideDrawer show={this.state.sideDrawerOpen} />
       {backdrop}
+      
       <main >
         <div style ={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
         <Picshow nameroom = {this.state.roomname} />
         </div>
         <nav className = 'hellofrom'>
         <ul>
-        <li><div className ="listView"><ListItem roomname = {this.state.roomname} dataset = {data}/></div></li>
+        <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
         </ul>
         <ul>
-          
+        
         </ul>
         </nav>
       </main>

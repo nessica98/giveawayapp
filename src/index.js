@@ -4,6 +4,7 @@ import {  BrowserRouter, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Home from './App';
+import ModalB from './component/Modal/Modal2'
 import * as serviceWorker from './serviceWorker';
 function HomeMain () {
     return(
@@ -16,7 +17,7 @@ const Routing = () =>{
                 
                 <Route path = "/room" component = {()=><div>input</div>} />
                 <Route path = "/room/:name" component = {Home}/>
-                
+                <Route path = "/dialog" component = {()=><ModalB show = {true}/>}/>
             </BrowserRouter>
     );
 
