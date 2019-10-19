@@ -1,5 +1,6 @@
-import React from 'react';
+import React , {useState} from 'react';
 import './Toolbar.css'
+import LoginModal from '../Modal/LoginModal'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
 const toolbar = props => (
@@ -12,8 +13,10 @@ const toolbar = props => (
         <div className= "spacer" />
         <div className="toolbar_navigation-items">
             <ul>
-                <li><a href="/">Contact</a></li>
-                <li><a href="/">LOGIN</a></li>
+                <li><button className="btn btn-link">Contact</button></li>
+                <li>
+                    <LoginModal />
+                </li>
             </ul>
         </div>
     </nav>

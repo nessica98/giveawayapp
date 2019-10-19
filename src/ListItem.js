@@ -5,11 +5,13 @@ class ListItem extends Component {
     constructor(props){
         super(props)
         this.state = {
-            dataset: []
+            dataset: [],
+            API_LINK: 'http://localhost:5000/giveaway'
         }
+        const API_LINK = 'http://localhost:5000/giveaway' // Link of Giveaway API
     }
-    componentDidMount() {
-        fetch('http://localhost:5000/giveaway')
+    componentWillMount() {
+        fetch(this.state.API_LINK)
         .then((resp)=> {return resp.json()})
         .then(dataset => {
             dataset = dataset.filter((data)=>{return data.giveaway_room === this.props.roomname })
@@ -48,15 +50,16 @@ class Item extends Component {
     }
     render() {
         var item = this.props.detail;
+        var imgstyle = this.imagestyle;
         return(<div>
         <div></div>
         <div className="card" style={{marginTop:'15px', marginBottom:'15px',width: '100%'}}>
-        <img src="..." className="card-img-top" alt="..."></img>
+        <img src="/images/1126.jpg" style = {{maxWidth:"300px"}} className="}card-img-top" alt="..."></img>
             <div className="card-body">
        <p className="card-text">{item.giveawayname}</p>
             </div>
             <div className="card-footer">
-            <ModalBox data = {item} />
+            <ModalBox buttonLabel = {"Detail"}  data = {item} />
             </div>
        </div></div>);
     }

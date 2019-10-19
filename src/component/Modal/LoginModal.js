@@ -1,28 +1,28 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
+//import LoginForm from '../login-form/Login'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import LoginForm from '../login-form/Login';
 
 const ModalBox = (props) => {
   const {
+    isOpen,
     buttonLabel,
-    className, data
+    className
   } = props;
   
-  const datagw = data;
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(isOpen);
 
   const toggle = () => setModal(!modal);
-  console.log(datagw)
   //const datagw = data;
   return (
     <div>
-      <Button className = "btn btn-info" onClick={toggle}>{buttonLabel}</Button>
+      <button onClick = {toggle} className="btn btn-link">LOGIN</button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>{datagw.giveawayname}</ModalHeader>
+        <ModalHeader toggle={toggle}>Login</ModalHeader>
         <ModalBody>
-            <p></p>
-          
+            <LoginForm/>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

@@ -15,10 +15,12 @@ import ListItem from "./ListItem";
 import ModalBox from "./component/Modal/Modal";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //import ModalB from './component/Modal/Modal2'
+
 class Home extends Component{
   constructor(props){
     super(props);
   }
+
  state = {
     roomname: this.props.match.params.name,
     sideDrawerOpen: false
@@ -47,7 +49,7 @@ class Home extends Component{
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
-    const img1 = './img/nubanner.jpg'
+    //const img1 = './img/nubanner.jpg'
   
   return (
     
