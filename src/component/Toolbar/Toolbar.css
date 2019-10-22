@@ -6,6 +6,7 @@
     background:black;
     height: 56px;
 }
+
 .toolbar__logo a {
     color: white;
     text-decoration: none;
@@ -34,6 +35,7 @@
 }
 .toolbar__navigation li{
     padding: 0 0.5rem;
+    margin: auto;
 }
 
 .toolbar_navigation-items a{
@@ -44,4 +46,14 @@
 .toolbar_navigation-items a:hover,
 .toolbar_navigation-items a:active{
     color: gray;
+}
+
+.MenuBar {
+    border: 3px;
+    border-color: white;
+    display: block;
+    color: pink;
+    align-items: initial;
+    width: 100px;
+    height: 50px;
 }

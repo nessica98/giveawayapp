@@ -1,27 +1,26 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Accordion } from 'reactstrap';
 
-const ModalBox = (props) => {
+const StatusModal = (props) => {
   const {
     buttonLabel,
-    className, data
+    className
   } = props;
   
-  const datagw = data;
+  //const datagw = data;
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-  console.log(datagw)
-  //const datagw = data;
+
   return (
     <div>
-      <Button className = "btn btn-info" onClick={toggle}>{buttonLabel}</Button>
-      <Modal size = "lg" isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>{datagw.giveawayname}</ModalHeader>
+      <Button color = "link" size = "sm" onClick={toggle}>Status</Button>
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}></ModalHeader>
         <ModalBody>
-            <p></p>
+            
           
         </ModalBody>
         <ModalFooter>
@@ -33,4 +32,5 @@ const ModalBox = (props) => {
   );
 }
 
-export default ModalBox;
+
+export default StatusModal;
