@@ -26,7 +26,20 @@ class LoginForm extends Component {
         const data = this.state
         
         axios.post('http://localhost:5000/user/login', data).then(
-            (data)=>console.log(data)
+            (res)=>{
+                const data = res.data
+                if(data.user === 'incorrectpass') {
+                    // incorrectpass
+                }
+                else if(data.user === 'ddd'){
+                    // usernotfound
+                }
+                else{
+                    // keep key in localStorage
+
+                    // change state home 
+                }
+            }
         )
        /* const data = new FormData(event.target);
         console.log(data);

@@ -5,13 +5,13 @@ import StatusModal from '../Modal/StatusModal'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
 const MenuBar =  (key) => {
-    if(key!==0) {
+    if(key) {
         return <li>
             <LoginModal />
         </li>
     }
     else {
-        return<div className = "card border-warning">
+        return <div className = "card border-warning">
             <div className = "MenuBar">
             <li style = {{fontSize:'10pt'}}>Name : xxx</li>
             <StatusModal />

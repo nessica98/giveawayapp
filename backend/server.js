@@ -15,8 +15,8 @@ const giveaway = require('./giveaway')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-require('./config/passport')
-app.use(require('./routes'))
+//require('./config/passport')
+//app.use(require('./routes'))
 
 app.use(cors());
 app.use(express.json());
