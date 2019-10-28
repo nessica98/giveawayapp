@@ -60,15 +60,14 @@ class Home extends Component{
       
       <main >
         <div style ={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-        <Picshow nameroom = {this.state.roomname} />
+          <Picshow nameroom = {this.state.roomname} />
         </div>
         <nav className = 'hellofrom'>
-        <ul>
-        <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
-        </ul>
-        <ul>
-        
-        </ul>
+          <ul>
+            <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
+          </ul>
+          <ul>
+          </ul>
         </nav>
       </main>
       

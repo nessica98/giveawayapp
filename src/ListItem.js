@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
-import ModalBox from './component/Modal/Modal'
+import ModalBox from './component/Modal/Modal';
+import {Container, Row, Col} from 'reactstrap';
 //import ModalB from './component/Modal/Modal2';
 class ListItem extends Component {
     constructor(props){
@@ -51,17 +52,27 @@ class Item extends Component {
     render() {
         var item = this.props.detail;
         var imgstyle = this.imagestyle;
-        return(<div>
-        <div></div>
-        <div className="card" style={{marginTop:'15px', marginBottom:'15px',width: '100%'}}>
-        <img src="/images/1126.jpg" style = {{maxWidth:"300px"}} className="}card-img-top" alt="..."></img>
-            <div className="card-body">
-       <p className="card-text">{item.giveawayname}</p>
+        return(
+        
+        <div>
+            <div className="card" style={{marginTop:'15px', marginBottom:'15px',width: '100%'}}>
+                <Container>
+                    <Row>
+                        <Col xs = {2.5}>
+                            <img src="/images/1126.jpg" style = {{maxWidth:"300px"}} className="}card-img-top" alt="..."></img>
+                        </Col>
+                        <Col>
+                        <div className="card-body">
+                            <p className="card-text">{item.giveawayname}</p>
+                        </div>
+                        </Col>
+                    </Row>
+                </Container>
+                <div className="card-footer">
+                        <ModalBox buttonLabel = {"Detail"}  data = {item} />
+                </div>
             </div>
-            <div className="card-footer">
-            <ModalBox buttonLabel = {"Detail"}  data = {item} />
-            </div>
-       </div></div>);
+        </div>);
     }
 }
 
