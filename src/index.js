@@ -6,6 +6,9 @@ import './index.css';
 import Home from './App';
 import ModalB from './component/Modal/Modal2'
 import * as serviceWorker from './serviceWorker';
+import Registerform from './register'
+import Room from './Room'
+import App from './LoginRegis'
 function HomeMain () {
     return(
         <div>Homepage</div>
@@ -13,12 +16,17 @@ function HomeMain () {
 }
 const Routing = () =>{
     return(
+        
         <BrowserRouter>
-                
-                <Route path = "/room" component = {()=><div>input</div>} />
-                <Route path = "/room/:name" component = {Home}/>
-                <Route path = "/dialog" component = {()=><ModalB show = {true}/>}/>
-            </BrowserRouter>
+                <Route exact path = "/room/:name" component = {Home}/>
+        
+                <Route exact path = "/" component = {Room} />
+   >
+                <Route exact path = "/register" component = {Registerform}/>
+  >
+                <Route exact path = "/dialog" component = {()=><ModalB show = {true}/>}/> 
+        </BrowserRouter>
+        
     );
 
 };
