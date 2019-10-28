@@ -8,7 +8,7 @@ import ModalB from './component/Modal/Modal2'
 import * as serviceWorker from './serviceWorker';
 import Registerform from './register'
 import Room from './Room'
-import App from './LoginRegis'
+
 function HomeMain () {
     return(
         <div>Homepage</div>
