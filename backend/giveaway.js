@@ -12,6 +12,10 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   //const giveawayname = req.body.giveawayname;
   //const giveaway_room = req.body.giveaway_room;
+
+  //check login if not login return 403
+
+  //
   const giveaway = 
   {giveawayname:req.body.giveawayname,
   giveaway_room:req.body.giveaway_room,
@@ -23,6 +27,20 @@ router.route('/add').post((req, res) => {
   newGW.save()
     .then(() => res.json('GW added!'))
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// updatestatus of each giveaway
+router.route('/managestatus').put((req,res)=>{
+  //data given in form {giveawayname , newStatus}
+  console.log('put request')
+  const {giveawayname, newStatus} = req.body;
+  //Updateindatabase
+  Giveaway.findOneAndUpdate({giveawayname:giveawayname},{
+    giveaway_status: newStatus
+  },(err,doc)=>{
+    if(err) throw err
+    res.send("update ok")
+  })
 });
 
 module.exports = router;
