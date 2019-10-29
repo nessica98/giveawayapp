@@ -1,0 +1,14 @@
+.hellofrom {
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 60px;
+}
+ 
+
+.hellofrom ul {
+    list-style: none;
+}
+
+.hellofrom ul li {
+    margin-top: 40px;
+}

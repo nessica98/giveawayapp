@@ -7,16 +7,16 @@ import Backdrop from './component/Backdrop/Backdrop';
 import sideDrawer from './component/SideDrawer/SideDrawer';
 import backdrop from './component/Backdrop/Backdrop';
 import { Button } from 'reactstrap';
-import './App.css'
-import Hello from "./Hello";
-import Slide from "./Slide"
+import './room.css'
 import Picshow from "./picshow";
-import ListItem from "./ListItem";
-import ModalBox from "./component/Modal/Modal";
+import Roomcard from "./CardRoom"
+import Slide from './Slide'
+
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //import ModalB from './component/Modal/Modal2'
 
-class Home extends Component{
+class Room extends Component{
   constructor(props){
     super(props);
   }
@@ -59,16 +59,12 @@ class Home extends Component{
       {backdrop}
       
       <main >
-        <div style ={{display: 'flex',  justifyContent:'center', alignItems:'center' , marginTop:'100px'}}>
-          <Picshow nameroom = {this.state.roomname} />
+        <div className = 'hellofrom'>
+        <ul>
+        <li><Slide /></li>
+        <li><Roomcard /></li>
+        </ul>
         </div>
-        <nav className = 'hellofrom'>
-          <ul>
-            <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
-          </ul>
-          <ul>
-          </ul>
-        </nav>
       </main>
       
     </div>
@@ -78,4 +74,4 @@ class Home extends Component{
 }
 
 
-export default Home;
+export default Room;
