@@ -1,12 +1,15 @@
 import React , {Component} from 'react';
 import {Form,FormGroup,Label,Input} from 'reactstrap'
+import {dispatch} from 'redux'
+import {useDispatch,useSelector} from 'react-redux'
 import axios from 'axios';
+import {BrowserRouter, Route,Redirect} from 'react-router-dom';
 
 class LoginForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user:'' , passwd:''
+            user:'' , passwd:'',loginsuccess:false
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.onChangeUser = this.onChangeUser.bind(this);
@@ -27,28 +30,36 @@ class LoginForm extends Component {
         
         axios.post('http://localhost:5000/user/login', data).then(
             (res)=>{
+                console.log(res.data)
                 const data = res.data
-                if(data.user === 'incorrectpass') {
+                if (data.user === 'incorrectpass') {
                     // incorrectpass
+                    alert('Incorrect password')
                 }
                 else if(data.user === 'ddd'){
                     // usernotfound
                 }
                 else{
                     // keep key in localStorage
-
+                    let token = data
+                    this.setState({loginsuccess:true})
+                    return <Redirect to = '/' />
                     // change state home 
+                    //store.dispatch({type:'SIGN IN', token:token})
                 }
             }
-        )
-       /* const data = new FormData(event.target);
-        console.log(data);
-        event.preventDefault();
-        fetch('http://localhost:5000/user/login', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: data
-        }).then((data)=>console.log(data));*/
+        ).then(()=>{
+            console.log('go')
+            
+        })
+       
+    }
+    renderRedirect() {
+        if (this.state.loginsuccess) {
+            return <div>
+                <h4>Login success</h4>
+            </div>
+          }
     }
     render() {
         return(
@@ -68,9 +79,15 @@ class LoginForm extends Component {
                         </div>
                     </FormGroup>
                 </Form>
+            
+            {this.renderRedirect()}
             </div>
         );
     }
 }
-
+const Success = () =>{
+    return <div>
+        <h2>Login success</h2>
+    </div>
+}
 export default LoginForm

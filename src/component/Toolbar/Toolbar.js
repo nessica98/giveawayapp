@@ -3,23 +3,9 @@ import './Toolbar.css'
 import LoginModal from '../Modal/LoginModal'
 import StatusModal from '../Modal/StatusModal'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
+import {connect} from 'react-redux'
 
-const MenuBar =  (key) => {
-    if(key) {
-        return <li>
-            <LoginModal />
-        </li>
-    }
-    else {
-        return <div className = "card border-warning">
-            <div className = "MenuBar">
-            <li style = {{fontSize:'10pt'}}>Name : xxx</li>
-            <StatusModal />
-        </div>
-        </div>
-          ; // Show User profile and giveawayMenu
-    }
-};
+
 
 const toolbar = props => (
 <header className="toolbar">
@@ -42,4 +28,21 @@ const toolbar = props => (
 
 
 );
+const MenuBar =  props => {
+    console.log(props)
+    if(props.aa===undefined) {
+        return <li>
+            <LoginModal />
+        </li>
+    }
+    else {
+        return <div className = "card border-warning">
+            <div className = "MenuBar">
+            <li style = {{fontSize:'10pt'}}>Name : xxx</li>
+            <StatusModal />
+        </div>
+        </div>
+          ; // Show User profile and giveawayMenu
+    }
+};
 export default toolbar;

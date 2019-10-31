@@ -9,12 +9,19 @@ import * as serviceWorker from './serviceWorker';
 import Registerform from './register'
 import Room from './Room'
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import loggedReducer from './component/reducer/logged';
+
+const store = createStore(loggedReducer)
+
 function HomeMain () {
     return(
         <div>Homepage</div>
     )
 }
 const Routing = () =>{
+    //console.log(store)
     return(
         
         <BrowserRouter>
@@ -33,7 +40,7 @@ const Routing = () =>{
 
        
         
-ReactDOM.render(<Routing/>,document.getElementById('root'));
+ReactDOM.render(<Provider store = {store}><Routing/></Provider>,document.getElementById('root'));
 //ReactDOM.render(<Home />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
