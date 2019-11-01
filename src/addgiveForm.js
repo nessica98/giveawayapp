@@ -59,11 +59,20 @@ class addgiveForm extends Component {
   };
 
   onClickSubmit() {
+
+    if (this.state.disableTime == true) {
+      var time = this.state.time;
+    }
+    else {
+      var time = format(this.state.time,"HH:mm");
+    }
+
+
     console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
-                "\nDate : " + format(this.state.date, "yyyy-MM-dd") +
-                "\nTime : " + format(this.state.time, "HH:mm") );
+                "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
+                "\nTime : " + time);
   }
 
   render(){
@@ -137,7 +146,7 @@ class addgiveForm extends Component {
               timeFormat="HH:mm"
             />
 
-          </FormGroup>
+          </FormGroup>  
 
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
 
