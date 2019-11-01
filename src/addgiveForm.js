@@ -139,7 +139,8 @@ class addgiveForm extends Component {
               timeIntervals={15}
               timeCaption="Time"
               placeholderText="This is disabled"
-              dateFormat="h:mm aa"
+              dateFormat="HH:mm"
+              timeFormat="HH:mm"
             />
 
           </FormGroup>
