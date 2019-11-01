@@ -15,11 +15,9 @@ class addgiveForm extends Component {
       detail: '',
       date: '',
       time: new Date(),
-      timesend: '',
       selectedOption: 'option1',
       disableTime: false,
-      date: new Date(),
-      datesend : format(new Date(), "yyyy-MM-dd")
+      date: new Date()
     };
     this.onChangeOption = this.onChangeOption.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
