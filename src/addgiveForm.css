@@ -1,0 +1,16 @@
+.registerbox {
+    margin-top: 50px;
+    padding-left: 40px;
+    padding-right: 500px;
+}
+.registerbox a{
+    font-size: 200%;
+}
+
+.timepick{
+    height: 35px;
+}
+
+.DetailBox{
+    rows: 4;
+}
