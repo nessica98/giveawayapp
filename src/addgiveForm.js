@@ -15,7 +15,7 @@ class addgiveForm extends Component {
       detail: '',
       date: '',
       time: new Date(),
-      timesend: format(new Date(), "h:mm aa"),
+      timesend: '',
       selectedOption: 'option1',
       disableTime: false,
       date: new Date(),
@@ -37,14 +37,12 @@ class addgiveForm extends Component {
     if (changeEvent.target.value === 'option2') {
       this.setState({
         time : '',
-        timesend : '',
         disableTime: true
       });
     }
     else {
       this.setState({
         time : new Date(),
-        timesend : format(new Date(), "h:mm aa"),
         disableTime: false
       })
     }
@@ -53,14 +51,12 @@ class addgiveForm extends Component {
   onChangeTime = date => {
     this.setState({
       time: date,
-      timesend: format(date, "h:mm aa")
     });
   };
 
   onChangeDate = date => {
     this.setState({
       date: date,
-      datesend: format(date, "h:mm aa")
     });
   };
 
@@ -68,8 +64,8 @@ class addgiveForm extends Component {
     console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
-                "\nDate : " + this.state.datesend +
-                "\nTime : " + this.state.timesend );
+                "\nDate : " + format(this.state.date, "yyyy-MM-dd") +
+                "\nTime : " + format(this.state.time, "HH:mm") );
   }
 
   render(){
@@ -138,7 +134,7 @@ class addgiveForm extends Component {
               disabled = {this.state.disableTime}
               timeIntervals={15}
               timeCaption="Time"
-              placeholderText="This is disabled"
+              placeholderText=""
               dateFormat="HH:mm"
               timeFormat="HH:mm"
             />
