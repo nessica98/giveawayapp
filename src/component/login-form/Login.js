@@ -1,7 +1,6 @@
 import React , {Component} from 'react';
 import {Form,FormGroup,Label,Input} from 'reactstrap'
-import {dispatch} from 'redux'
-import {useDispatch,useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 import axios from 'axios';
 import {BrowserRouter, Route,Redirect} from 'react-router-dom';
 
@@ -36,14 +35,19 @@ class LoginForm extends Component {
                     // incorrectpass
                     alert('Incorrect password')
                 }
-                else if(data.user === 'ddd'){
+                else if(data.user === 'usernotfound'){
                     // usernotfound
+                    alert('user not found')
                 }
                 else{
                     // keep key in localStorage
                     let token = data
+                    this.props.signIn(token)
+                    localStorage.setItem('token',token)
                     this.setState({loginsuccess:true})
-                    return <Redirect to = '/' />
+                    console.log(localStorage.getItem('token'))
+                    //window.location.reload(true)
+                    //return <Redirect to = '/' />
                     // change state home 
                     //store.dispatch({type:'SIGN IN', token:token})
                 }
@@ -62,6 +66,7 @@ class LoginForm extends Component {
           }
     }
     render() {
+        console.log(this.props.token)
         return(
             <div className = "loginForm">
                 <Form name = "loginForm" onSubmit={this.handleLogin}>
@@ -90,4 +95,18 @@ const Success = () =>{
         <h2>Login success</h2>
     </div>
 }
-export default LoginForm
+
+const mapStateToProp = (state) =>{
+    return({token:state.token})
+}
+const mapDispatchToProp = (dispatch)=>{
+    return({
+        signIn: (token)=>{
+            dispatch({
+                type: "SIGN_IN",
+                payload: token
+            })
+        }
+    })
+}
+export default connect (mapStateToProp,mapDispatchToProp) (LoginForm)

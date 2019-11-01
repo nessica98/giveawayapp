@@ -12,7 +12,7 @@ import Hello from "./Hello";
 import Slide from "./Slide"
 import Picshow from "./picshow";
 import ListItem from "./ListItem";
-
+import {connect} from "react-redux"
 
 import Icon from './iconshow';
 
@@ -39,7 +39,7 @@ class Home extends Component{
 
   render(){
     //var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'},{Name:'Kang Minhee polaroid 20ea'}]}];
-   
+    console.log(this.props)
     //this.store.dispatch()
     console.log(this.props.match.params.name);
     const {params} = this.props.match;
@@ -80,4 +80,7 @@ class Home extends Component{
 }
 
 
-export default Home;
+const mapStateToProp = (state) =>{
+  return({token:state.token})
+}
+export default connect (mapStateToProp) (Home);

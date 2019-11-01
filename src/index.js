@@ -10,16 +10,17 @@ import Registerform from './register'
 import Room from './Room'
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import loggedReducer from './component/reducer/logged';
 
-const store = createStore(loggedReducer)
+import Toolbox from './component/Toolbar/Toolbar2'
 
-function HomeMain () {
-    return(
-        <div>Homepage</div>
-    )
+const mylogger = (store)=>(next)=>(action)=>{
+    console.log("Log Action", action);
+    next(action)
 }
+const store = createStore(loggedReducer,applyMiddleware(mylogger))
+
 const Routing = () =>{
     //console.log(store)
     return(
@@ -28,18 +29,18 @@ const Routing = () =>{
                 <Route exact path = "/room/:name" component = {Home}/>
         
                 <Route exact path = "/" component = {Room} />
-   >
+   
                 <Route exact path = "/register" component = {Registerform}/>
-  >
-                <Route exact path = "/dialog" component = {()=><ModalB show = {true}/>}/> 
+
+                <Route exact path = "/toolbox" component = {Toolbox}/> 
         </BrowserRouter>
         
     );
 
 };
-
-       
-        
+store.subscribe(()=>{
+    console.log("Update store : ", store.getState())
+})
 ReactDOM.render(<Provider store = {store}><Routing/></Provider>,document.getElementById('root'));
 //ReactDOM.render(<Home />, document.getElementById('root'));
 

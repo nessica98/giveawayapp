@@ -4,10 +4,13 @@ import LoginModal from '../Modal/LoginModal'
 import StatusModal from '../Modal/StatusModal'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import {connect} from 'react-redux'
+import { tsPropertySignature } from '@babel/types';
+import {verify} from 'jsonwebtoken';
 
+const toolbar = props =>  {  
+    console.log(props)
+    return(
 
-
-const toolbar = props => (
 <header className="toolbar">
     <nav className="toolbar__navigation">
         <div>
@@ -19,7 +22,7 @@ const toolbar = props => (
             <ul>
                 <li><button className = "btn btn-link"> Contact </button></li>
                 <li>
-                     <MenuBar />
+                     <MenuBar token = {props.token} />
                 </li>
             </ul>
         </div>
@@ -27,22 +30,28 @@ const toolbar = props => (
 </header>
 
 
-);
+)};
 const MenuBar =  props => {
     console.log(props)
-    if(props.aa===undefined) {
+    if(props.token==null) {
         return <li>
             <LoginModal />
         </li>
     }
     else {
-        return <div className = "card border-warning">
+        let decode = verify(props.token,'secret')
+        console.log(decode)
+        return <div className = "card text-white bg-danger">
             <div className = "MenuBar">
-            <li style = {{fontSize:'10pt'}}>Name : xxx</li>
+            <li style = {{fontSize:'10pt'}}>{decode.username}</li>
             <StatusModal />
         </div>
         </div>
           ; // Show User profile and giveawayMenu
     }
 };
-export default toolbar;
+
+const mapStateToProp = (state) =>{
+    return({token:state.token})
+}
+export default connect (mapStateToProp) (toolbar);
