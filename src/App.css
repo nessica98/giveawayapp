@@ -1,5 +1,5 @@
 .hellofrom {
-    padding-top: 40px;
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -13,7 +13,11 @@
 
 .listView {
     margin: auto;
-    width: 60%;
+    width: 80%
     
+
+}
+
+.listView #pic {
 
 }

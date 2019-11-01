@@ -10,32 +10,39 @@ import Registerform from './register'
 import Room from './Room'
 import Detail from './Detail'
 
-function HomeMain () {
-    return(
-        <div>Homepage</div>
-    )
+import {Provider} from 'react-redux';
+import {createStore,applyMiddleware} from 'redux';
+import loggedReducer from './component/reducer/logged';
+
+import Toolbox from './component/Toolbar/Toolbar2'
+
+const mylogger = (store)=>(next)=>(action)=>{
+    console.log("Log Action", action);
+    next(action)
 }
+const store = createStore(loggedReducer,applyMiddleware(mylogger))
+
 const Routing = () =>{
+    //console.log(store)
     return(
         
         <BrowserRouter>
                 <Route exact path = "/room/:name" component = {Home}/>
         
                 <Route exact path = "/" component = {Room} />
-   >
+   
                 <Route exact path = "/register" component = {Registerform}/>
-  >
-                <Route exact path = "/dialog" component = {()=><ModalB show = {true}/>}/> 
-                <Route exact path = "/detail" component = {Detail}/> 
+
+                <Route exact path = "/toolbox" component = {Toolbox}/> 
         </BrowserRouter>
         
     );
 
 };
-
-       
-        
-ReactDOM.render(<Routing/>,document.getElementById('root'));
+store.subscribe(()=>{
+    console.log("Update store : ", store.getState())
+})
+ReactDOM.render(<Provider store = {store}><Routing/></Provider>,document.getElementById('root'));
 //ReactDOM.render(<Home />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

@@ -1,12 +1,14 @@
 import React , {Component} from 'react';
 import {Form,FormGroup,Label,Input} from 'reactstrap'
+import {connect} from 'react-redux'
 import axios from 'axios';
+import {BrowserRouter, Route,Redirect} from 'react-router-dom';
 
 class LoginForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user:'' , passwd:''
+            user:'' , passwd:'',loginsuccess:false
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.onChangeUser = this.onChangeUser.bind(this);
@@ -27,30 +29,44 @@ class LoginForm extends Component {
         
         axios.post('http://localhost:5000/user/login', data).then(
             (res)=>{
+                console.log(res.data)
                 const data = res.data
-                if(data.user === 'incorrectpass') {
+                if (data.user === 'incorrectpass') {
                     // incorrectpass
+                    alert('Incorrect password')
                 }
-                else if(data.user === 'ddd'){
+                else if(data.user === 'usernotfound'){
                     // usernotfound
+                    alert('user not found')
                 }
                 else{
                     // keep key in localStorage
-
+                    let token = data
+                    this.props.signIn(token)
+                    localStorage.setItem('token',token)
+                    this.setState({loginsuccess:true})
+                    console.log(localStorage.getItem('token'))
+                    //window.location.reload(true)
+                    //return <Redirect to = '/' />
                     // change state home 
+                    //store.dispatch({type:'SIGN IN', token:token})
                 }
             }
-        )
-       /* const data = new FormData(event.target);
-        console.log(data);
-        event.preventDefault();
-        fetch('http://localhost:5000/user/login', {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: data
-        }).then((data)=>console.log(data));*/
+        ).then(()=>{
+            console.log('go')
+            
+        })
+       
+    }
+    renderRedirect() {
+        if (this.state.loginsuccess) {
+            return <div>
+                <h4>Login success</h4>
+            </div>
+          }
     }
     render() {
+        console.log(this.props.token)
         return(
             <div className = "loginForm">
                 <Form name = "loginForm" onSubmit={this.handleLogin}>
@@ -68,9 +84,29 @@ class LoginForm extends Component {
                         </div>
                     </FormGroup>
                 </Form>
+            
+            {this.renderRedirect()}
             </div>
         );
     }
 }
+const Success = () =>{
+    return <div>
+        <h2>Login success</h2>
+    </div>
+}
 
-export default LoginForm
+const mapStateToProp = (state) =>{
+    return({token:state.token})
+}
+const mapDispatchToProp = (dispatch)=>{
+    return({
+        signIn: (token)=>{
+            dispatch({
+                type: "SIGN_IN",
+                payload: token
+            })
+        }
+    })
+}
+export default connect (mapStateToProp,mapDispatchToProp) (LoginForm)
