@@ -8,6 +8,7 @@ import ModalB from './component/Modal/Modal2'
 import * as serviceWorker from './serviceWorker';
 import Registerform from './register'
 import Room from './Room'
+import Detail from './Detail'
 
 import {Provider} from 'react-redux';
 import {createStore,applyMiddleware} from 'redux';

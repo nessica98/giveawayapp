@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Detail from '../../Detail';
 
 const ModalBox = (props) => {
   const {
@@ -9,7 +10,8 @@ const ModalBox = (props) => {
     className, data
   } = props;
   
-  const datagw = data;
+  console.log(props)
+  const datagw = props.data;
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -21,8 +23,8 @@ const ModalBox = (props) => {
       <Modal size = "lg" isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>{datagw.giveawayname}</ModalHeader>
         <ModalBody>
-            <p></p>
-          
+            <Detail data = {datagw}/>
+            
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
