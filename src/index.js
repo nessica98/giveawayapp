@@ -8,6 +8,7 @@ import ModalB from './component/Modal/Modal2'
 import * as serviceWorker from './serviceWorker';
 import Registerform from './register'
 import Room from './Room'
+import Detail from './Detail'
 
 function HomeMain () {
     return(
@@ -25,6 +26,7 @@ const Routing = () =>{
                 <Route exact path = "/register" component = {Registerform}/>
   >
                 <Route exact path = "/dialog" component = {()=><ModalB show = {true}/>}/> 
+                <Route exact path = "/detail" component = {Detail}/> 
         </BrowserRouter>
         
     );
