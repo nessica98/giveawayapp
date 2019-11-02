@@ -13,8 +13,9 @@ import Slide from "./Slide"
 import Picshow from "./picshow";
 import ListItem from "./ListItem";
 import {connect} from "react-redux"
-
+import UserStatus from "./component/Userstatus/UserStatus"
 import Icon from './iconshow';
+import {banner_find} from './Banner_find'
 
 class Home extends Component{
   ///logged = useSelector(state => state.logged);
@@ -35,7 +36,12 @@ class Home extends Component{
 
   backdropClickHandler = () => {
    this.setState({sideDrawerOpen: false});
-};
+  };
+
+  
+  componentDidMount(){
+
+  }
 
   render(){
     //var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'},{Name:'Kang Minhee polaroid 20ea'}]}];
@@ -43,17 +49,27 @@ class Home extends Component{
     //this.store.dispatch()
     console.log(this.props.match.params.name);
     const {params} = this.props.match;
-    console.log(params);         
+    console.log(typeof(params.name));         
     let sideDrawer;
     let backdrop;
-
+    const findBanner = (array,roomname) => {
+      return array.findIndex((data) => {
+        //console.log(data.roomname,roomname)
+        //console.log(typeof(data.roomname),typeof(roomname))
+        return data.roomname == roomname
+      })
+    }
+    console.log(findBanner(banner_find,params.name))
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
     //const img1 = './img/nubanner.jpg'
-    
-  return (
-    
+  if(findBanner(banner_find,params.name)==-1){
+    return(<div>Room Not Found</div>)
+  }
+  else{
+    return (
+    <div>
     <div style={{height: '100%'}}>
       <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
       <SideDrawer show={this.state.sideDrawerOpen} />
@@ -65,6 +81,7 @@ class Home extends Component{
         </div>
         <nav className = 'hellofrom'>
           <ul>
+            <li><div className ="listview"><UserStatus  /></div></li>
             <li><div className="listView"><Icon roomname = {this.state.roomname}/></div></li>
             <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
           </ul>
@@ -72,11 +89,12 @@ class Home extends Component{
           </ul>
         </nav>
       </main>
-      
     </div>
+    </div>    
   
   );
   }
+}
 }
 
 

@@ -1,19 +1,19 @@
-import nubanner from './img/nubanner.jpg'
-import minhyun from './img/minhyun.jpg'
+
 export const banner_find = [
     {
         roomname: 'nuest',
+        roomtitle: "NU'EST",
         room_img: require("./img/nubanner.jpg"),
         room_member: [require("./img/nuest/jr.png"),require("./img/nuest/aron.png"),require("./img/nuest/dh.png")
                 ,require('./img/nuest/minhyun.png'),require("./img/nuest/ren.png")]
     },
-    {
-        roomname: 'minhyun',
-        room_img: minhyun
-    },
+    
     {
         roomname: 'x1official',
-        room_img: require('./img/x1banner.jpg')
+        roomtitle: "Fly Hight X1",
+        room_img: require('./img/x1banner.jpg'),
+        room_member: [require("./img/x1icon/hsw.png"),require("./img/x1icon/csy.png"),require("./img/x1icon/kws.png")
+        ,require('./img/x1icon/kyh.png'),require("./img/x1icon/lhg.png")]
     },
     {
         roomname: 'not found'

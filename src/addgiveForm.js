@@ -3,7 +3,7 @@ import './addgiveForm.css'
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import TimePicker from 'react-time-picker'
 
-class addgiveForm extends Component {
+class AddGiveForm extends Component {
 
   constructor() {
     super();
@@ -109,11 +109,10 @@ class addgiveForm extends Component {
           </FormGroup>
 
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
-
         </Form>
       </div>    
     );
   }
 }
 
-export default addgiveForm;
+export default AddGiveForm;

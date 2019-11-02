@@ -64,6 +64,7 @@ class Item extends Component {
                         <Col>
                         <div className="card-body">
                             <p className="card-text">{item.giveawayname}</p>
+                            <p className="card-text">By...{item.giveaway_givername}</p>
                         </div>
                         </Col>
                     </Row>

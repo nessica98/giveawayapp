@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {decode} from 'jsonwebtoken';
 
 import Listbox from './Listbox';
 
 class MyGiveawayList extends Component {
-
+    componentDidMount(){
+        
+        const token = this.props.token
+        const user = decode(token,'secret')
+        const url = 'http://localhost:5000/queue/'+user.username
+        console.log(url)
+        //axios.get('http://localhost:5000/queue/')
+    }
     constructor() {
         super();
         this.state = {
@@ -39,4 +49,7 @@ class MyGiveawayList extends Component {
     }
 }
 
-export default MyGiveawayList;
+const mapStateToProp = (state) =>{
+    return({token:state.token})
+  }
+export default connect (mapStateToProp) (MyGiveawayList);

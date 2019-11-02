@@ -12,6 +12,7 @@ class Detail extends Component {
   render() {
     const datagw = this.props.data
     console.log(datagw)
+    console.log()
     return (
   
         <div className="App">
@@ -21,12 +22,12 @@ class Detail extends Component {
                 <ul>
                 <li><ListGroupItem>ชื่อของ : {datagw.giveawayname} </ListGroupItem></li>
                 <li><ListGroupItem>แจกโดย : {datagw.giveaway_givername}</ListGroupItem></li>
-                <li><ListGroupItem>สถานที่ : </ListGroupItem></li>
-                <li><ListGroupItem>วันเวลา : </ListGroupItem></li>
-                <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>1</Badge></ListGroupItem></li>
+                <li><ListGroupItem>สถานที่ : {datagw.giveaway_place}</ListGroupItem></li>
+                <li><ListGroupItem>วันเวลา : {datagw.giveaway_date}</ListGroupItem></li>
+                <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>{datagw.giveaway_amount}</Badge></ListGroupItem></li>
                 <li><Status /></li>
                 <li>From Giver : </li>
-                <li><ListGroupItem color="warning"></ListGroupItem></li>
+                <li><ListGroup color = "warning">{datagw.giveaway_useranouce}</ListGroup></li>
                 </ul>
             </ListGroup>
           </div>
