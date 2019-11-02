@@ -37,7 +37,7 @@ class requestroomForm extends Component {
           </div>
           <FormGroup className = 'form'>
             <Label className = 'lebel' for="exMail">อีเมลล์ผู้ขอเปิด</Label>
-            <Input type="text" name="Email" id="exMail" placeholder="Email" value = {this.state.objectName} onChange = {this.onChangeText}/>
+            <Input type="email" name="Email" id="exMail" placeholder="Email" value = {this.state.objectName} onChange = {this.onChangeText}/>
           </FormGroup>
 
           <FormGroup className = 'form'>

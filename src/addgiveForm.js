@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 
-class AddGiveForm extends Component {
+class addgiveForm extends Component {
 
   constructor() {
     super();
@@ -15,6 +15,7 @@ class AddGiveForm extends Component {
       detail: '',
       date: '',
       time: new Date(),
+      objectImg: '',
       selectedOption: 'option1',
       disableTime: false,
       date: new Date()
@@ -72,7 +73,8 @@ class AddGiveForm extends Component {
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
                 "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
-                "\nTime : " + time);
+                "\nTime : " + time +
+                "\nImg : " + this.state.objectImg);
   }
 
   render(){
@@ -146,13 +148,19 @@ class AddGiveForm extends Component {
               timeFormat="HH:mm"
             />
 
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="exImg">Image URL</Label>
+            <Input type="text" name="objectImg" id="exImg" placeholder="Image URL" value = {this.state.objectImg} onChange = {this.onChangeText}/>
           </FormGroup>  
 
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
+
         </Form>
       </div>    
     );
   }
 }
 
-export default AddGiveForm;
+export default addgiveForm;
