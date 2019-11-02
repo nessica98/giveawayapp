@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './addgiveForm.css'
 import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import TimePicker from 'react-time-picker'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from 'date-fns'
 
 class AddGiveForm extends Component {
 
@@ -12,12 +14,14 @@ class AddGiveForm extends Component {
       placeName: '',
       detail: '',
       date: '',
-      time: '10:00',
+      time: new Date(),
       selectedOption: 'option1',
-      disableTime: 'False'
+      disableTime: false,
+      date: new Date()
     };
     this.onChangeOption = this.onChangeOption.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.handleChange = this.onChangeDate.bind(this);
   }
 
   onChangeTime = time => this.setState({ time });
@@ -31,23 +35,44 @@ class AddGiveForm extends Component {
     if (changeEvent.target.value === 'option2') {
       this.setState({
         time : '',
-        disableTime: 'True'
+        disableTime: true
       });
     }
     else {
       this.setState({
-        time : '10:00',
-        disableTime: 'False'
+        time : new Date(),
+        disableTime: false
       })
     }
   }
 
+  onChangeTime = date => {
+    this.setState({
+      time: date,
+    });
+  };
+
+  onChangeDate = date => {
+    this.setState({
+      date: date,
+    });
+  };
+
   onClickSubmit() {
+
+    if (this.state.disableTime == true) {
+      var time = this.state.time;
+    }
+    else {
+      var time = format(this.state.time,"HH:mm");
+    }
+
+
     console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
-                "\nDate : " + this.state.date +
-                "\nTime : " + this.state.time );
+                "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
+                "\nTime : " + time);
   }
 
   render(){
@@ -72,8 +97,13 @@ class AddGiveForm extends Component {
           </FormGroup>
 
           <FormGroup>
-            <Label for="exDate">วันที่แจก</Label>
-            <Input type="date" name="date" id="exDate" placeholder="" value = {this.state.date} onChange = {this.onChangeText} />
+            <Label for="exDate">วันที่แจก</Label><br/>
+            <DatePicker id = "exDate"
+                        className = "react-datepickera react-datepickera__today-button react-datepickera__header" 
+                        selected={this.state.date} 
+                        onChange={this.onChangeDate}
+                        dateFormat="eee d MMMM yyyy"
+                        />
           </FormGroup>
 
           <FormGroup>
@@ -100,13 +130,23 @@ class AddGiveForm extends Component {
               </Col>
               <Col xs = {10}></Col>
             </Row>
-            <TimePicker className = "timepick"
+
+
+            <DatePicker
+              className = "react-datepickera react-datepickera__today-button react-datepickera__header"
+              selected={this.state.time}
               onChange={this.onChangeTime}
-              value={this.state.time}
-              disableClock = 'True'
-              disable = {this.state.disableTime}
+              showTimeSelect
+              showTimeSelectOnly
+              disabled = {this.state.disableTime}
+              timeIntervals={15}
+              timeCaption="Time"
+              placeholderText=""
+              dateFormat="HH:mm"
+              timeFormat="HH:mm"
             />
-          </FormGroup>
+
+          </FormGroup>  
 
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
         </Form>

@@ -21,3 +21,12 @@
 .listView #pic {
 
 }
+
+.roomnotfound ul{
+    list-style: none;
+}
+
+.roomnotfound li{
+    font-size: 500%
+
+}

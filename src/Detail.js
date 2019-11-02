@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import { Button } from 'reactstrap';
 import './Detail.css';
-import Status from './Statusmodal'
+import Jong from './Jongmodal'
 //import { super } from '@babel/types';
 
 class Detail extends Component {
@@ -22,10 +22,15 @@ class Detail extends Component {
                 <ul>
                 <li><ListGroupItem>ชื่อของ : {datagw.giveawayname} </ListGroupItem></li>
                 <li><ListGroupItem>แจกโดย : {datagw.giveaway_givername}</ListGroupItem></li>
+
                 <li><ListGroupItem>สถานที่ : {datagw.giveaway_place}</ListGroupItem></li>
                 <li><ListGroupItem>วันเวลา : {datagw.giveaway_date}</ListGroupItem></li>
                 <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>{datagw.giveaway_amount}</Badge></ListGroupItem></li>
                 <li><Status /></li>
+
+                
+                <li><Jong dataitem = {datagw} /></li>
+
                 <li>From Giver : </li>
                 <li><ListGroup color = "warning">{datagw.giveaway_useranouce}</ListGroup></li>
                 </ul>
