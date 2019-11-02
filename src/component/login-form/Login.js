@@ -46,7 +46,7 @@ class LoginForm extends Component {
                     localStorage.setItem('token',token)
                     this.setState({loginsuccess:true})
                     console.log(localStorage.getItem('token'))
-                    //window.location.reload(true)
+                    window.location.reload(true)
                     //return <Redirect to = '/' />
                     // change state home 
                     //store.dispatch({type:'SIGN IN', token:token})
