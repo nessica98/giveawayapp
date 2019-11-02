@@ -41,11 +41,8 @@ const MenuBar =  props => {
     else {
         let decode = verify(props.token,'secret')
         console.log(decode)
-        return <div className = "card text-white bg-danger">
-            <div className = "MenuBar">
-            <li style = {{fontSize:'10pt'}}>{decode.username}</li>
+        return <div >
             <StatusModal />
-        </div>
         </div>
           ; // Show User profile and giveawayMenu
     }

@@ -5,19 +5,19 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 class Registerform extends Component {
     constructor(props){
       super(props)
-      this.state = {email:'',password:'',twitter:''}
+      this.state = {username:'',password:'',password2:'',twittername:''}
       this.handleOnSubmit = this.handleOnSubmit.bind(this);
       this.handleEmailOnChange = this.handleEmailOnChange.bind(this)
-      //this.handleUserOnChange = this.handleUserOnChange.bind(this) 
+      this.handleConfirmPassOnChange = this.handleConfirmPassOnChange.bind(this) 
       this.handlePasswordOnChange = this.handlePasswordOnChange.bind(this)
       this.handleTwitterOnChange = this.handleTwitterOnChange.bind(this)
     }
     handleEmailOnChange(e){
-      this.setState({email:e.target.value})
+      this.setState({username:e.target.value})
       //console.log(this.state)
     }
-    handleUserOnChange(e){
-
+    handleConfirmPassOnChange(e){
+      this.setState({password2:e.target.value})
     }
     handlePasswordOnChange(e){
       this.setState({password:e.target.value})
@@ -27,8 +27,13 @@ class Registerform extends Component {
     }
     handleOnSubmit(e){
       e.preventDefault();
-      const data = this.state
-     console.log(data)
+      if(this.state.password!==this.state.password2){
+        alert('Password doesn\'t match')
+      }else{
+        const data = this.state
+        console.log(data)
+        // Add user to database
+      }
     }
     render(){
         return(
@@ -45,7 +50,7 @@ class Registerform extends Component {
       </FormGroup>
       <FormGroup>
         <Label for="examplePassword">Confirm Password</Label>
-        <Input value = {this.state.confirmpassword} type="password" name="password" id="examplePassword" placeholder="Password " />
+        <Input onChange = {this.handleConfirmPassOnChange} value = {this.state.confirmpassword} type="password" name="password" id="examplePassword" placeholder="Password " />
       </FormGroup>
       <FormGroup>
         <Label for="exampletwitter">Twitter</Label>

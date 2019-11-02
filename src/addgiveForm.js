@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
 
-class addgiveForm extends Component {
+class AddGiveForm extends Component {
 
   constructor() {
     super();
@@ -149,11 +149,10 @@ class addgiveForm extends Component {
           </FormGroup>  
 
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
-
         </Form>
       </div>    
     );
   }
 }
 
-export default addgiveForm;
+export default AddGiveForm;
