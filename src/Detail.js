@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import { Button } from 'reactstrap';
 import './Detail.css';
-import Status from './Statusmodal'
+import Jong from './Jongmodal'
 //import { super } from '@babel/types';
 
 class Detail extends Component {
@@ -24,7 +24,7 @@ class Detail extends Component {
                 <li><ListGroupItem>สถานที่ : </ListGroupItem></li>
                 <li><ListGroupItem>วันเวลา : </ListGroupItem></li>
                 <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>1</Badge></ListGroupItem></li>
-                <li><Status /></li>
+                <li><Jong dataitem = {datagw} /></li>
                 <li>From Giver : </li>
                 <li><ListGroupItem color="warning"></ListGroupItem></li>
                 </ul>
