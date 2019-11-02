@@ -11,7 +11,7 @@ import './room.css'
 import Picshow from "./picshow";
 import Roomcard from "./CardRoom"
 import Slide from './Slide'
-
+import {banner_find} from './Banner_find'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //import ModalB from './component/Modal/Modal2'
@@ -22,7 +22,7 @@ class Room extends Component{
   }
 
  state = {
-    roomname: this.props.match.params.name,
+    roomdata:banner_find,
     sideDrawerOpen: false
   };
   
@@ -38,11 +38,11 @@ class Room extends Component{
 
   render(){
     //var data = [{room:'nuest',product:[{Name: 'Kang Dongho poloroid'}]},{room:'x1official',product:[{Name: 'Sticker Seungwoo 70ea',owner:'mydanielpeach'},{Name:'Kang Minhee polaroid 20ea'}]}];
-   
     
-    console.log(this.props.match.params.name);
-    const {params} = this.props.match;
-    console.log(params);         
+    
+    //console.log(this.props.match.params.name);
+    //const {params} = this.props.match;
+    //console.log(params);         
     let sideDrawer;
     let backdrop;
 
@@ -50,7 +50,7 @@ class Room extends Component{
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
     //const img1 = './img/nubanner.jpg'
-  
+  console.log(this.state.roomdata)
   return (
     
     <div style={{height: '100%'}}>
@@ -62,7 +62,7 @@ class Room extends Component{
         <div className = 'hellofrom'>
         <ul>
         <li><Slide /></li>
-        <li><Roomcard /></li>
+        <li><Roomcard roomdata = {this.state.roomdata}/></li>
         </ul>
         </div>
       </main>
