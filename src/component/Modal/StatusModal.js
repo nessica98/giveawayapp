@@ -2,7 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Accordion } from 'reactstrap';
-import MyGiveawatList from '../Mygiveaway/DisplayList'
+import MyGiveawatList from '../Mygiveaway/Listboxmain'
 const StatusModal = (props) => {
   const {
     buttonLabel,
@@ -18,7 +18,7 @@ const StatusModal = (props) => {
     <div>
       <Button color = "link" size = "sm" onClick={toggle}>Status</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}></ModalHeader>
+        <ModalHeader toggle={toggle}>Status</ModalHeader>
         <ModalBody>
             <MyGiveawatList/>
           

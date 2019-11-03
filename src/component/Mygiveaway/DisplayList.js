@@ -10,25 +10,17 @@ class MyGiveawayList extends Component {
         
         const token = this.props.token
         const user = decode(token,'secret')
-        const url = 'http://localhost:5000/queue/'+user.username
+        const url = 'http://localhost:5000/giveaway/'+user.username
         console.log(url)
-        //axios.get('http://localhost:5000/queue/')
+        axios.get(url).then((res)=>{
+            console.log(res.data)
+            this.setState({dataset:res.data})
+        })
     }
     constructor() {
         super();
         this.state = {
-            dataset : [
-                {
-                    "Id": 1,
-                    "Name": "one",
-                    "Content": "oneone"
-                },
-                {
-                    "Id": 2,
-                    "Name": "two",
-                    "Content": "twotwo"
-                }
-            ]
+            dataset : []
         };
     }
 
