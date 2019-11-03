@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
-//const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
+  username: {
+    type: String,
+    unique: true
+  },
+  password: String,
   twittername: String
 });
+
+
 /*
 //Crypto part ignore it
 userSchema.methods.setPassword = function(password) {
@@ -45,4 +50,5 @@ userSchema.methods.toAuthJSON = function() {
 }
 
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;

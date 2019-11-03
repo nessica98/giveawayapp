@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken')
+const Schema = require('mongoose').Schema;
 let User = require('./user.model');
+
 
 router.route('/').get((req, res) => {
   User.find()
@@ -13,12 +15,12 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
   const user = req.body;
-
+  console.log(user)
   const newUser = new User(user);
   
   newUser.save()
     .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).send(err));
 });
 
 router.route('/login').post((req,res) => {
