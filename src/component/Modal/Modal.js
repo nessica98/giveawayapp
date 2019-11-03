@@ -22,7 +22,7 @@ const ModalBox = (props) => {
       <Button className = "btn btn-info" onClick={toggle}>{buttonLabel}</Button>
       <Modal size = "lg" isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>{datagw.giveawayname}</ModalHeader>
-        <ModalBody>
+        <ModalBody >
             <Detail data = {datagw}/>
             
         </ModalBody>

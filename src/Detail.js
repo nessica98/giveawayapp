@@ -9,26 +9,16 @@ class Detail extends Component {
   constructor(props){
     super(props)
     this.state = {
-      modal : false,
-      detail : ''
+
     };
   }
-
-  toggle = () => this.setState({modal : !this.state.modal,
-                                detail : ''})
-
-  addstatus = () => {console.log("detail: " + this.state.detail);
-                    this.setState({modal : !this.state.modal});
-                    window.location.reload(true);
-  }
-
-  onChangeText = changeEvent => this.setState({ [changeEvent.target.name] : changeEvent.target.value });
   
   render() {
 
     const datagw = this.props.data
+    const status = datagw.giveaway_userannounce
     console.log(datagw)
-    console.log()
+    console.log(datagw.giveaway_userannounce)
 
     return (
   
@@ -49,15 +39,15 @@ class Detail extends Component {
                   <Col>
                     <Row>
                       <Jong dataitem = {datagw} />
-
-                      <Button className = "btn btn-info Addstatus"  onClick={this.toggle}>Add Status</Button>
-
+  
                     </Row>
                   </Col>
                 </li>
 
                 <li>From Giver : </li>
-                <li><ListGroup color = "warning">{datagw.giveaway_useranouce}</ListGroup></li>
+                <li><ListGroup >{status.map((data)=>{return(
+                    <ListGroupItem  color = "warning"><p>{data.detail}</p><p style ={{margin:'4px',fontSize:'9px',textAlign:'right'}}>{data.date}</p></ListGroupItem>)
+                })}</ListGroup></li>
                 </ul>
             </ListGroup>
           </div>
@@ -66,28 +56,9 @@ class Detail extends Component {
           
           
           </div>
-          <div className="App__Form">
-           
+          <div style = {{display: 'flex',  justifyContent:'center', alignItems:'center', backgroundColor: 'rgb(169, 226, 236)'}}className="App__Form">
+                <img src = {datagw.giveaway_pic} style = {{width:"300px"}}></img>
           </div>
-        
-
-          <div>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} >
-              <ModalHeader toggle={this.toggle}>Add Status</ModalHeader>
-              <ModalBody>
-              <FormGroup>
-                <Label>Status</Label>
-                <Input type="textarea" rows = '4' name="detail" placeholder="Detail" value = {this.state.detail}  onChange = {this.onChangeText}/>
-              </FormGroup>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onClick={this.addstatus}>Submit</Button>{' '}
-                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-              </ModalFooter>
-            </Modal>
-          </div>
-
-
         </div>
       
     
