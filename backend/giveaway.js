@@ -50,5 +50,21 @@ router.route('/managestatus').put((req,res)=>{
 
 
 // update status
-//router.
+router.route('/addstatus').put((req,res)=>{
+  console.log('add status')
+  const {giveawayname,status} = req.body
+  console.log(giveawayname,status)
+  Giveaway.find({giveawayname:giveawayname},(err,res)=>{
+    let data = res[0]
+    let announce_array = data.giveaway_userannounce
+    console.log(announce_array)
+    announce_array.push(status)
+    console.log(announce_array)
+    Giveaway.update({giveawayname:giveawayname},{giveaway_userannounce:announce_array},(err,doc,res)=>{
+      console.log(err,doc,res)
+    })
+  })
+  res.end()
+})
+
 module.exports = router;
