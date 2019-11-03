@@ -51,7 +51,9 @@ class Item extends Component {
     }
     render() {
         var item = this.props.detail;
-        var imgstyle = this.imagestyle;
+        //var imgstyle = this.imagestyle;
+        var img = (item.giveaway_pic) ? (item.giveaway_pic) : ("/images/1126.jpg")
+        
         return(
         
         <div>
@@ -59,7 +61,7 @@ class Item extends Component {
                 <Container>
                     <Row>
                         <Col xs = {2.5}>
-                            <img src="/images/1126.jpg" style = {{maxWidth:"300px"}} className="card-img-top" alt="..."></img>
+                            <img src={img}  style = {{maxWidth:"200px"}} className="card-img-top" alt="..."></img>
                         </Col>
                         <Col>
                         <div className="card-body">
