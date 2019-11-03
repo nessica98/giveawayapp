@@ -16,11 +16,7 @@ router.route('/add').post((req, res) => {
   //check login if not login return 403
 
   //
-  const giveaway = 
-  {giveawayname:req.body.giveawayname,
-  giveaway_room:req.body.giveaway_room,
-  giveaway_givername:req.body.giveaway_givername,
-  giveaway_status:req.body.giveawaystatus}
+  const giveaway = req.body
     console.log(req.body);
   const newGW = new Giveaway(giveaway);
   
@@ -53,5 +49,6 @@ router.route('/managestatus').put((req,res)=>{
 });
 
 
-// u
+// update status
+//router.
 module.exports = router;

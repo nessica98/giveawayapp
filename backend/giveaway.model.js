@@ -13,6 +13,9 @@ const GWSchema = new Schema({
   giveaway_room: String,
   giveaway_givername: String,
   giveaway_status: Number,
+  giveaway_place: String,
+  giveaway_amount: Intl,
+  giveaway_date: Date,
   giveaway_pic: String,
   giveaway_userannounce: Array
 });
