@@ -26,7 +26,7 @@ class Detail extends Component {
                 <li><ListGroupItem>สถานที่ : {datagw.giveaway_place}</ListGroupItem></li>
                 <li><ListGroupItem>วันเวลา : {datagw.giveaway_date}</ListGroupItem></li>
                 <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>{datagw.giveaway_amount}</Badge></ListGroupItem></li>
-                <li><Status /></li>
+                
 
                 
                 <li><Jong dataitem = {datagw} /></li>
