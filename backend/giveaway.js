@@ -29,6 +29,15 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//show giveaways each user
+router.route('/:username').get((req,res)=>{
+  const username = req.params.username
+  Giveaway.find({giveaway_givername:username},(err,res)=>{
+    if(err) throw err
+    console.log(res)
+  }).then(giveaway => {res.json(giveaway)})
+})
+
 // updatestatus of each giveaway
 router.route('/managestatus').put((req,res)=>{
   //data given in form {giveawayname , newStatus}
@@ -43,4 +52,6 @@ router.route('/managestatus').put((req,res)=>{
   })
 });
 
+
+// u
 module.exports = router;

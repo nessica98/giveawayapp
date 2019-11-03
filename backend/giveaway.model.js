@@ -12,7 +12,9 @@ const GWSchema = new Schema({
   },
   giveaway_room: String,
   giveaway_givername: String,
-  giveaway_status: Number
+  giveaway_status: Number,
+  giveaway_pic: String,
+  giveaway_userannounce: Array
 });
 
 const giveaway = mongoose.model('giveaway', GWSchema);

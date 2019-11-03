@@ -22,7 +22,7 @@ class Icon extends Component{
         picarray = picarray.room_member
         console.log(picarray)
         if(picarray){
-        return(<div style = {{height:"100px"}}>
+        return(<div >
             <ul>
                 {
                     picarray.map((pic)=>{

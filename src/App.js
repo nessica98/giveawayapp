@@ -69,7 +69,7 @@ class Home extends Component{
   if(findBanner(banner_find,params.name)==-1){
 
     return(<div>
-      <div style={{height: '100%'}}>
+      <div style={{display:'flex',flexDirection:"column"}}>
       <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
       <SideDrawer show={this.state.sideDrawerOpen} />
       {backdrop}
@@ -122,7 +122,7 @@ class Home extends Component{
               </Col>
             </Row>
           <Row>
-             <Col sm="12" md={{ size: 6, offset: 3 }}>
+             <Col sm="12" md={{ size: 10, offset: 1 }}>
 
             <li><div className="listView"><Icon roomname = {this.state.roomname}/></div></li>
             </Col>
