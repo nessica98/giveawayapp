@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
-import { Button } from 'reactstrap';
+import { Button, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input  } from 'reactstrap';
 import './Detail.css';
 import Jong from './Jongmodal'
 //import { super } from '@babel/types';
@@ -8,11 +8,28 @@ import Jong from './Jongmodal'
 class Detail extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      modal : false,
+      detail : ''
+    };
   }
+
+  toggle = () => this.setState({modal : !this.state.modal,
+                                detail : ''})
+
+  addstatus = () => {console.log("detail: " + this.state.detail);
+                    this.setState({modal : !this.state.modal});
+                    window.location.reload(true);
+  }
+
+  onChangeText = changeEvent => this.setState({ [changeEvent.target.name] : changeEvent.target.value });
+  
   render() {
+
     const datagw = this.props.data
     console.log(datagw)
     console.log()
+
     return (
   
         <div className="App">
@@ -26,10 +43,19 @@ class Detail extends Component {
                 <li><ListGroupItem>สถานที่ : {datagw.giveaway_place}</ListGroupItem></li>
                 <li><ListGroupItem>วันเวลา : {datagw.giveaway_date}</ListGroupItem></li>
                 <li><ListGroupItem>จำนวนของที่เหลือ : <Badge pill>{datagw.giveaway_amount}</Badge></ListGroupItem></li>
-                <li><Status /></li>
+                {/*<li><Status /></li>*/}
 
                 
-                <li><Jong dataitem = {datagw} /></li>
+                <li>
+                  <Col>
+                    <Row>
+                      <Jong dataitem = {datagw} />
+
+                      <Button className = "btn btn-info Addstatus"  onClick={this.toggle}>Add Status</Button>
+
+                    </Row>
+                  </Col>
+                </li>
 
                 <li>From Giver : </li>
                 <li><ListGroup color = "warning">{datagw.giveaway_useranouce}</ListGroup></li>
@@ -44,7 +70,24 @@ class Detail extends Component {
           <div className="App__Form">
            
           </div>
-          
+        
+
+          <div>
+            <Modal isOpen={this.state.modal} toggle={this.toggle} >
+              <ModalHeader toggle={this.toggle}>Add Status</ModalHeader>
+              <ModalBody>
+              <FormGroup>
+                <Label>Status</Label>
+                <Input type="textarea" rows = '4' name="detail" placeholder="Detail" value = {this.state.detail}  onChange = {this.onChangeText}/>
+              </FormGroup>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={this.addstatus}>Submit</Button>{' '}
+                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+              </ModalFooter>
+            </Modal>
+          </div>
+
 
         </div>
       
