@@ -89,15 +89,6 @@ class Home extends Component{
         </nav>
       </main>
     </div>
-      
-      
-      
-     
-
-
-
-
-
     </div>)
 
   }

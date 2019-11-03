@@ -33,7 +33,7 @@ class Listbox extends Component {
           <CardBody>
             <Container>
               <Row>
-                <Col xs = {2.5}>
+                <Col xs = {0.5}>
                   <img className = "img" src = ""/>
                   <br/>
                   <Button className = "btn btn-dark ListButton3 AddImageFont">Add Image</Button>

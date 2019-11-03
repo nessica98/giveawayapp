@@ -10,9 +10,11 @@ class MyGiveawayList extends Component {
         
         const token = this.props.token
         const user = decode(token,'secret')
-        const url = 'http://localhost:5000/queue/'+user.username
+        const url = "http://localhost:5000/giveaway/"+user.username
         console.log(url)
-        //axios.get('http://localhost:5000/queue/')
+        axios.get(url, (req,res)=>{
+            console.log(res)
+        })
     }
     constructor() {
         super();
@@ -38,7 +40,7 @@ class MyGiveawayList extends Component {
 
         if (dataset.length>0) {
             return(<div style={{display:'block',maxwidth:'80pc'}}>
-                <ul>{dataset.map((data)=> {return <Listbox data = {data}/>})}</ul>
+                <ul style = {{padding :'0px'}}>{dataset.map((data)=> {return <Listbox data = {data}/>})}</ul>
                 </div>);
         }
 

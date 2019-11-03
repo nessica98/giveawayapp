@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './register.css'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import axios from 'axios';
 
 class Registerform extends Component {
     constructor(props){
@@ -23,7 +24,7 @@ class Registerform extends Component {
       this.setState({password:e.target.value})
     }
     handleTwitterOnChange(e){
-      this.setState({twitter:e.target.value})
+      this.setState({twittername:e.target.value})
     }
     handleOnSubmit(e){
       e.preventDefault();
@@ -33,6 +34,12 @@ class Registerform extends Component {
         const data = this.state
         console.log(data)
         // Add user to database
+        axios.post('http://localhost:5000/user/add',data).then((res)=>{
+          console.log(res)
+          window.location.replace("/");
+        }).catch((res)=>{
+          alert('สมัครไม่สำเร็จ (ชื่อผู้ใช้ซ้ำกัน)')
+        })
       }
     }
     render(){
@@ -41,8 +48,8 @@ class Registerform extends Component {
          <Form onSubmit = {this.handleOnSubmit}>
         <a>Register Form</a>
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input onChange = {this.handleEmailOnChange} value = {this.state.email} type="email" name="email" id="exampleEmail" placeholder="Email" />
+        <Label for="exampleEmail">Username</Label>
+        <Input onChange = {this.handleEmailOnChange} value = {this.state.email} type="username" name="username" id="exampleEmail" placeholder="Username" />
       </FormGroup>
       <FormGroup>
         <Label for="examplePassword">Password</Label>
@@ -54,7 +61,7 @@ class Registerform extends Component {
       </FormGroup>
       <FormGroup>
         <Label for="exampletwitter">Twitter</Label>
-        <Input onChange = {this.handleTwitterOnChange} value = {this.state.Twitter} type="twitter" name="twitter" id="exampletwitter" placeholder="Twitter Account" />
+        <Input onChange = {this.handleTwitterOnChange} value = {this.state.Twitter} type="twitter" name="twittername" id="exampletwitter" placeholder="Twitter Account" />
       </FormGroup>
       <Button color="success">SUBMIT</Button>{' '}
       </Form>

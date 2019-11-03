@@ -18,7 +18,7 @@ class Detail extends Component {
         <div className="App">
           <div className="App__Aside">
           <div className = "aaa">
-            <ListGroup >
+            <ListGroup style = {{padding:'0px'}}>
                 <ul>
                 <li><ListGroupItem>ชื่อของ : {datagw.giveawayname} </ListGroupItem></li>
                 <li><ListGroupItem>แจกโดย : {datagw.giveaway_givername}</ListGroupItem></li>
