@@ -4,15 +4,19 @@ import { Container, Row, Col, Button, Form, FormGroup, Label, Input, FormText } 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns'
+import {connect} from 'react-redux'
+import {decode} from 'jsonwebtoken'
+import axios from 'axios';
 
 class AddGiveForm extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       objectName: '',
       placeName: '',
       detail: '',
+      pic: '',
       date: '',
       time: new Date(),
       selectedOption: 'option1',
@@ -23,6 +27,7 @@ class AddGiveForm extends Component {
     this.onClickSubmit = this.onClickSubmit.bind(this);
     this.handleChange = this.onChangeDate.bind(this);
   }
+  token = this.props.token
 
   onChangeTime = time => this.setState({ time });
 
@@ -68,16 +73,37 @@ class AddGiveForm extends Component {
     }
 
 
-    console.log("Name : " + this.state.objectName + 
+    /*console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
+                "\nPic : " + this.state.pic +
                 "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
-                "\nTime : " + time);
+                "\nTime : " + time);*/
+    if(this.state.objectName === '' || this.state.placeName === '' || this.state.detail === '' 
+    || this.state.pic === '' || this.state.date === ''){
+      alert("กรอกข้อมูลให้ครบทุกช่อง")
+      return;
+    }
+    if(!this.props.token){
+      alert("Please Login")
+      return;
+    }
+    const data = {giveawayname:this.state.objectName, giveaway_room:this.props.room, giveaway_place:this.props.placeName,
+      giveaway_givername:decode(this.props.token,'secret').username,giveaway_status:1,
+      giveaway_pic:this.state.pic,giveaway_date:format(this.state.date,"yyyy-MM-dd"),giveaway_time:time,giveaway_userannounce:[]} 
+    
+      console.log(data)
+      axios.post('http://localhost:5000/giveaway/add',data).then((res)=>{
+        // redirected
+        console.log(res)
+      }).catch((res)=>{alert('error to add new giveaway')})
+    
   }
 
   render(){
+    console.log(this.props)
     return(
-      <div className="registerbox">
+      <div>
         <Form>
           <a>Add Giveaway Form</a>
 
@@ -97,6 +123,12 @@ class AddGiveForm extends Component {
           </FormGroup>
 
           <FormGroup>
+            <Label for="exDetail">รูปของแจก (Link ภาพ)</Label>
+            <Input type="text" name="pic" id="exDetail" placeholder="URL Pic" className = 'DetailBox' value = {this.state.pic} onChange = {this.onChangeText}/>
+          </FormGroup>
+
+          <p style ={{fontSize:'10px'}}>**คุณต้อง Upload รูปจากเว็บไซต์นอก หรือ Copy URL รูปจาก Twitter</p>
+          <FormGroup>
             <Label for="exDate">วันที่แจก</Label><br/>
             <DatePicker id = "exDate"
                         className = "react-datepickera react-datepickera__today-button react-datepickera__header" 
@@ -110,7 +142,7 @@ class AddGiveForm extends Component {
             <Label for="exTime">เวลาที่แจก</Label>
             <br/>
             <Row>
-              <Col xs = {1}>
+              <Col xs = {2}>
                 <div className="radio">
                   <label>
                     <input type="radio" value="option1" checked={this.state.selectedOption === 'option1'}
@@ -119,9 +151,9 @@ class AddGiveForm extends Component {
                   </label>
                 </div>
               </Col>
-              <Col xs = {1}>
+              <Col >
                 <div className="radio">
-                  <label>
+                  <label style = {{marginLeft:"5px"}}>
                     <input type="radio" value="option2" checked={this.state.selectedOption === 'option2'}
                                                         onChange={this.onChangeOption} />
                     TBA
@@ -147,7 +179,7 @@ class AddGiveForm extends Component {
             />
 
           </FormGroup>  
-
+          
           <Button color="success" onClick = {this.onClickSubmit}>SUBMIT</Button>
         </Form>
       </div>    
@@ -155,4 +187,7 @@ class AddGiveForm extends Component {
   }
 }
 
-export default AddGiveForm;
+const mapStateToProp = (state) =>{
+  return({token:state.token})
+}
+export default connect (mapStateToProp) (AddGiveForm);
