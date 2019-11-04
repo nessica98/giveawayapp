@@ -96,18 +96,20 @@ class AddGiveForm extends Component {
       axios.post('http://localhost:5000/giveaway/add',data).then((res)=>{
         // redirected
         console.log(res)
+        alert('add giveaway complete')
+        window.location.replace('/room/'+this.state.room)
       }).catch((res)=>{alert('error to add new giveaway')})
     
   }
 
   render(){
-    console.log(this.props)
+
+    //console.log(this.props)
+    if(this.props.token){
     return(
       <div>
         <Form>
-          <a>Add Giveaway Form</a>
-
-          <FormGroup>
+              <FormGroup>
             <Label for="exObject">ชื่อของที่จะแจก</Label>
             <Input type="text" name="objectName" id="exObject" placeholder="Object Name" value = {this.state.objectName} onChange = {this.onChangeText}/>
           </FormGroup>
@@ -185,6 +187,13 @@ class AddGiveForm extends Component {
       </div>    
     );
   }
+  else{
+    return (<div style = {{display:'flex',justifyContent:'center'}}>
+      please login before add giveaway ... 
+      
+    </div>)
+  }
+}
 }
 
 const mapStateToProp = (state) =>{

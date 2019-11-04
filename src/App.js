@@ -16,6 +16,7 @@ import {connect} from "react-redux"
 import Icon from './iconshow';
 import {banner_find} from './Banner_find'
 import UserStatus from "./component/Userstatus/UserStatus"
+import AddGWModal from './component/Modal/AddGiveawayModal'
 import { Container, Row, Col } from 'reactstrap';
 
 
@@ -114,12 +115,13 @@ class Home extends Component{
             </Row>
           <Row>
              <Col sm="12" md={{ size: 10, offset: 1 }}>
-
+            
             <li><div className="listView"><Icon roomname = {this.state.roomname}/></div></li>
             </Col>
           </Row>
           <Row>
           <Col sm="12" md={{ size:10, offset: 1 }}>
+            <li><div className="listview"><AddGWModal room = {params.name}/></div></li>
             <li><div className ="listView"><ListItem roomname = {this.state.roomname} /></div></li>
           </Col>
           </Row>
