@@ -16,6 +16,7 @@ class AddGiveForm extends Component {
       objectName: '',
       placeName: '',
       detail: '',
+      amount: 0,
       pic: '',
       date: '',
       time: new Date(),
@@ -76,6 +77,7 @@ class AddGiveForm extends Component {
     /*console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
+                "\nAmount : " + this.state.amount + 
                 "\nPic : " + this.state.pic +
                 "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
                 "\nTime : " + time);*/
@@ -89,7 +91,7 @@ class AddGiveForm extends Component {
       return;
     }
     const data = {giveawayname:this.state.objectName, giveaway_room:this.props.room, giveaway_place:this.props.placeName,
-      giveaway_givername:decode(this.props.token,'secret').username,giveaway_status:1,
+      giveaway_givername:decode(this.props.token,'secret').username,giveaway_status:1,giveaway_detail:this.state.detail,giveaway_amount:this.state.amount,
       giveaway_pic:this.state.pic,giveaway_date:format(this.state.date,"yyyy-MM-dd"),giveaway_time:time,giveaway_userannounce:[]} 
     
       console.log(data)
@@ -125,6 +127,11 @@ class AddGiveForm extends Component {
           </FormGroup>
 
           <FormGroup>
+            <Label>จำนวน</Label>
+            <Input type="number" name="amount" placeholder="Amount" value = {this.state.amount} onChange = {this.onChangeText}/>
+          </FormGroup>
+
+          <FormGroup>
             <Label for="exDetail">รูปของแจก (Link ภาพ)</Label>
             <Input type="text" name="pic" id="exDetail" placeholder="URL Pic" className = 'DetailBox' value = {this.state.pic} onChange = {this.onChangeText}/>
           </FormGroup>
@@ -144,7 +151,7 @@ class AddGiveForm extends Component {
             <Label for="exTime">เวลาที่แจก</Label>
             <br/>
             <Row>
-              <Col xs = {2}>
+              <Col xs = {3}>
                 <div className="radio">
                   <label>
                     <input type="radio" value="option1" checked={this.state.selectedOption === 'option1'}
@@ -162,7 +169,6 @@ class AddGiveForm extends Component {
                   </label>
                 </div>
               </Col>
-              <Col xs = {10}></Col>
             </Row>
 
 

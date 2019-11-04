@@ -60,7 +60,7 @@ class Room extends Component{
       
       <main >
         <div className = 'hellofrom'>
-        <ul>
+        <ul style = {{padding : '0px'}}>
         <li><Slide /></li>
         <li><Roomcard roomdata = {this.state.roomdata}/></li>
         </ul>
