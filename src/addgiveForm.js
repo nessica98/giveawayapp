@@ -74,13 +74,13 @@ class AddGiveForm extends Component {
     }
 
 
-    /*console.log("Name : " + this.state.objectName + 
+    console.log("Name : " + this.state.objectName + 
                 "\nPlace : " + this.state.placeName +
                 "\nDetail : " + this.state.detail +
                 "\nAmount : " + this.state.amount + 
                 "\nPic : " + this.state.pic +
                 "\nDate : " + format(this.state.date,"yyyy-MM-dd") +
-                "\nTime : " + time);*/
+                "\nTime : " + time);
     if(this.state.objectName === '' || this.state.placeName === '' || this.state.detail === '' 
     || this.state.pic === '' || this.state.date === ''){
       alert("กรอกข้อมูลให้ครบทุกช่อง")
@@ -90,7 +90,7 @@ class AddGiveForm extends Component {
       alert("Please Login")
       return;
     }
-    const data = {giveawayname:this.state.objectName, giveaway_room:this.props.room, giveaway_place:this.props.placeName,
+    const data = {giveawayname:this.state.objectName, giveaway_room:this.props.room, giveaway_place:this.state.placeName,
       giveaway_givername:decode(this.props.token,'secret').username,giveaway_status:1,giveaway_detail:this.state.detail,giveaway_amount:this.state.amount,
       giveaway_pic:this.state.pic,giveaway_date:format(this.state.date,"yyyy-MM-dd"),giveaway_time:time,giveaway_userannounce:[]} 
     
@@ -99,7 +99,7 @@ class AddGiveForm extends Component {
         // redirected
         console.log(res)
         alert('add giveaway complete')
-        window.location.replace('/room/'+this.props.room)
+        //window.location.replace('/room/'+this.props.room)
       }).catch((res)=>{alert('error to add new giveaway')})
     
   }
