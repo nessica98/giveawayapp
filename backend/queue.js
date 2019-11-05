@@ -42,6 +42,7 @@ router.route('/add').post(async (req, res) => {
     
     if(giveawayfromuser_filt.length > 0){
         res.send({error:"Giver can't be reciever"})
+        return;
     }
 
     // Reciever can recieve only one each reciever
@@ -49,6 +50,7 @@ router.route('/add').post(async (req, res) => {
     console.log(QbyReciever)
     if(QbyReciever.length > 0){
         res.send({error:"Already Queue"})
+        return;
     }
     
     Giveaway.find({giveawayname:giveawayname},(err,dd)=>{
@@ -64,12 +66,11 @@ router.route('/add').post(async (req, res) => {
         console.log(data)
         Giveaway.updateOne({giveawayname:giveawayname},{giveaway_amount:amount_after,giveaway_status:status_after},(err)=>{
             const queue = {
-
                 queue_code:id,
                 queue_user:user,
-                queue_isreceive:0,
+                queue_isreceived:0,
                 queue_giveawayName:data.giveawayname,
-                             
+                            
                 }
             
                 console.log(queue)
@@ -112,6 +113,20 @@ router.route('/ReciveItem').get((req, res) => {
     Queue.findOneAndUpdate({giveawayname:giveaway.giveawayname,user:user},{isrecive:1})
     .then(queue => res.json(queue))
     .catch(err => res.status(400).json('Error: ' + err));
+    console.log('dd')
+});
+///
+
+router.route('/giveaway/:giveaway').get(async(req, res) => {
+    
+    ////            Get data from URL
+    let giveaway = await req.params.giveaway
+    ////            qurry for attended event for user
+    let queue = await Queue.find({ queue_giveawayName: giveaway })
+    console.log(giveaway)
+    
+    console.log(queue)
+    res.json(queue)
     console.log('dd')
 });
 

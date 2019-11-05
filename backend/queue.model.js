@@ -8,7 +8,7 @@ const queueSchema = new Schema({
     unique: true
   },
   queue_user: String,      // attended user 
-  queue_isrecive: Number, // 0 no ; 1 yes
+  queue_isreceived: Number, // 0 no ; 1 yes
   queue_giveawaypic: String,
   queue_giveawayName: String 
   
