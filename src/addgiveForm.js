@@ -99,7 +99,7 @@ class AddGiveForm extends Component {
         // redirected
         console.log(res)
         alert('add giveaway complete')
-        //window.location.replace('/room/'+this.props.room)
+        window.location.replace('/room/'+this.props.room)
       }).catch((res)=>{alert('error to add new giveaway')})
     
   }
