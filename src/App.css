@@ -1,0 +1,32 @@
+.hellofrom {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+ 
+.hellofrom li {
+    margin: 0.5rem 0;
+}
+.hellofrom ul {
+    list-style: none;
+}
+
+.listView {
+    margin: auto;
+    width: 80%
+    
+
+}
+
+.listView #pic {
+
+}
+
+.roomnotfound ul{
+    list-style: none;
+}
+
+.roomnotfound li{
+    font-size: 500%
+
+}
