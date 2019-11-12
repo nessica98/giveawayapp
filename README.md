@@ -1,5 +1,5 @@
-# 
-backend command run : `nodemon server`
+# Backend run (On your local side)
+backend command run : `nodemon server` or `node server`
 server will run on http://localhost:5000
 ## Update on 12 Nov 2019
 Our website is deployed on https://giveawayapp1.herokuapp.com/
